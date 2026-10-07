@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Liberty Robotics — FIRST Team 1764 — design directions</title>
+    <meta
+      name="description"
+      content="Four design directions for a rebuilt website for FIRST Robotics Competition Team 1764, Liberty Robotics, of Liberty, Missouri."
+    />
+
+    <style>
+      :root {
+        --brand-blue: #0a52b0;
+        --brand-blue-deep: #06377a;
+        --ink: #14202a;
+        --paper: #ffffff;
+        --rule: #d4dbe3;
+        --measure: 42rem;
+      }
+
+      *, *::before, *::after { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        padding: 3rem 1.5rem 5rem;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: system-ui, sans-serif;
+        line-height: 1.6;
+      }
+
+      main { max-width: var(--measure); margin-inline: auto; }
+
+      h1 { margin: 0 0 0.25rem; font-size: 2rem; line-height: 1.15; }
+      .team-number { color: var(--brand-blue); }
+
+      .status {
+        margin: 0 0 2rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid var(--rule);
+        color: var(--brand-blue-deep);
+      }
+
+      h2 { font-size: 1.15rem; margin: 2.5rem 0 1rem; }
+
+      ol { padding-left: 0; list-style: none; counter-reset: dir; }
+      li {
+        counter-increment: dir;
+        padding: 1.25rem 0;
+        border-bottom: 1px solid var(--rule);
+      }
+      li a { font-size: 1.15rem; font-weight: 600; color: var(--brand-blue); }
+      li p { margin: 0.35rem 0 0; }
+
+      a:focus-visible { outline: 3px solid var(--brand-blue); outline-offset: 2px; }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <h1>Liberty Robotics <span class="team-number">1764</span></h1>
+      <p class="status">Design preview. Not the team's live website.</p>
+
+      <p>
+        Four directions for a rebuilt Team 1764 site. All four show the same core
+        content, so the difference you are judging is layout, typography, and
+        tone rather than what the page says. Bumper also adds a kickoff
+        countdown and a video slot, because that direction depends on them.
+      </p>
+
+      <p>
+        Nothing here is final. The colors are sampled from a team photograph and
+        the records and quotes are placeholders.
+      </p>
+
+      <h2>The directions</h2>
+      <ol>
+        <li>
+          <a href="mockups/archive/">Archive</a>
+          <p>
+            Dark and dense. The season record is the main event, on the theory
+            that a team that documents itself well is the most convincing thing
+            a robotics team can show.
+          </p>
+        </li>
+        <li>
+          <a href="mockups/institutional/">Institutional</a>
+          <p>
+            Light and roomy, led by a photograph. Immediately legible to a
+            parent, a sponsor, or a principal.
+          </p>
+        </li>
+        <li>
+          <a href="mockups/editorial/">Editorial</a>
+          <p>
+            Type-led and asymmetric, built around student voices. The most
+            print-like of the four.
+          </p>
+        </li>
+        <li>
+          <a href="mockups/bumper/">Bumper</a>
+          <p>
+            Built for recruiting. The team number sits on a robot bumper, with
+            tiles for video, the next kickoff, and how to join. Aimed at the
+            student deciding whether to show up.
+          </p>
+        </li>
+      </ol>
+    </main>
+  </body>
+</html>
