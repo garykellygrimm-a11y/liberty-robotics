@@ -47,8 +47,9 @@ liberty-robotics/
 │   └── bumper/index.html
 ├── docs/
 │   └── open-questions.md   What we still need answered
+├── README.md               This file
 ├── .editorconfig           Shared editor settings
-└── .gitignore
+└── .gitignore              Files Git should never track
 ```
 
 Each direction lives in its own folder as `index.html`, so its address ends
