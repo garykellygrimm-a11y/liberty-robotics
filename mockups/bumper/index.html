@@ -3,110 +3,315 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Liberty Robotics — FIRST Team 1764 — design directions</title>
-    <meta
-      name="description"
-      content="Four design directions for a rebuilt website for FIRST Robotics Competition Team 1764, Liberty Robotics, of Liberty, Missouri."
-    />
+    <title>Liberty Robotics 1764 — Bumper direction</title>
+    <meta name="description" content="Design direction D for FIRST Robotics Competition Team 1764." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Saira:wdth,wght@50..125,100..900&display=swap" rel="stylesheet" />
 
     <style>
       :root {
-        --brand-blue: #0a52b0;
-        --brand-blue-deep: #06377a;
-        --ink: #14202a;
-        --paper: #ffffff;
-        --rule: #d4dbe3;
-        --measure: 42rem;
+        --concrete: #e3e5e7;
+        --panel: #f4f5f6;
+        --ink: #16191d;
+        --muted: #4f5862;
+        --blue: #0a52b0;
+        --blue-deep: #06377a;
+        --signal: #f5c400;
+        --white: #ffffff;
       }
 
       *, *::before, *::after { box-sizing: border-box; }
 
       body {
         margin: 0;
-        padding: 3rem 1.5rem 5rem;
-        background: var(--paper);
+        background: var(--concrete);
         color: var(--ink);
-        font-family: system-ui, sans-serif;
-        line-height: 1.6;
+        font-family: "Saira", system-ui, sans-serif;
+        font-size: 1rem;
+        line-height: 1.55;
       }
 
-      main { max-width: var(--measure); margin-inline: auto; }
+      .wrap { max-width: 72rem; margin-inline: auto; padding-inline: 1rem; }
 
-      h1 { margin: 0 0 0.25rem; font-size: 2rem; line-height: 1.15; }
-      .team-number { color: var(--brand-blue); }
-
-      .status {
-        margin: 0 0 2rem;
-        padding-bottom: 2rem;
-        border-bottom: 1px solid var(--rule);
-        color: var(--brand-blue-deep);
+      .flag {
+        margin: 0;
+        background: var(--ink);
+        color: var(--white);
+        font-size: 0.85rem;
+        padding: 0.5rem 1rem;
       }
 
-      h2 { font-size: 1.15rem; margin: 2.5rem 0 1rem; }
+      .skip { position: absolute; left: -999px; }
+      .skip:focus { left: 1rem; top: 1rem; background: var(--white); padding: 0.5rem 1rem; z-index: 1; }
 
-      ol { padding-left: 0; list-style: none; counter-reset: dir; }
-      li {
-        counter-increment: dir;
-        padding: 1.25rem 0;
-        border-bottom: 1px solid var(--rule);
+      header { padding-block: 1rem; }
+      .bar { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+      .mark { display: flex; align-items: center; gap: 0.6rem; font-weight: 600; text-decoration: none; color: var(--ink); }
+      .chip {
+        background: var(--blue);
+        color: var(--white);
+        font-stretch: 62%;
+        font-weight: 800;
+        font-size: 1.15rem;
+        line-height: 1;
+        padding: 0.3rem 0.55rem;
+        border-radius: 0.5rem;
       }
-      li a { font-size: 1.15rem; font-weight: 600; color: var(--brand-blue); }
-      li p { margin: 0.35rem 0 0; }
+      .bar .button { margin-left: auto; }
+      nav { display: flex; gap: 1.25rem; flex-wrap: wrap; order: 3; width: 100%; }
+      nav a { color: var(--ink); text-decoration: none; font-weight: 500; }
+      nav a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
 
-      a:focus-visible { outline: 3px solid var(--brand-blue); outline-offset: 2px; }
+      .button {
+        display: inline-block;
+        background: var(--ink);
+        color: var(--white);
+        font-weight: 600;
+        text-decoration: none;
+        padding: 0.6rem 1.2rem;
+        border-radius: 999px;
+      }
+      .button:hover { background: var(--blue-deep); }
+
+      @media (min-width: 40rem) {
+        nav { order: 0; width: auto; margin-left: auto; }
+        .bar .button { margin-left: 0; }
+      }
+
+      .bumper {
+        display: grid;
+        gap: 1rem 2rem;
+        align-items: end;
+        margin-block: 0.5rem 0.75rem;
+        padding: 1.5rem 1.5rem 1.75rem;
+        background: var(--blue);
+        color: var(--white);
+        border-radius: 2rem;
+        box-shadow:
+          inset 0 0.4rem 0 rgb(255 255 255 / 0.14),
+          inset 0 -0.6rem 0 rgb(0 0 0 / 0.22);
+      }
+      .bumper .number {
+        margin: 0;
+        font-stretch: 58%;
+        font-weight: 850;
+        font-size: clamp(7rem, 30vw, 16rem);
+        line-height: 0.78;
+        letter-spacing: -0.01em;
+        font-variant-numeric: tabular-nums;
+      }
+      .bumper h1 {
+        margin: 0 0 0.5rem;
+        font-stretch: 75%;
+        font-weight: 700;
+        font-size: clamp(1.75rem, 4vw, 2.5rem);
+        line-height: 1.05;
+      }
+      .bumper p.pitch { margin: 0; max-width: 34ch; font-size: 1.1rem; }
+
+      @media (min-width: 48rem) {
+        .bumper { grid-template-columns: auto 1fr; padding: 2rem 2.5rem 2.25rem; }
+      }
+
+      @media (prefers-reduced-motion: no-preference) {
+        .bumper { animation: drive-in 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+      }
+      @keyframes drive-in {
+        from { transform: translateX(-8%); opacity: 0; }
+        to { transform: none; opacity: 1; }
+      }
+
+      .bento { display: grid; gap: 0.75rem; padding-bottom: 3rem; }
+
+      @media (min-width: 48rem) {
+        .bento {
+          grid-template-columns: repeat(4, 1fr);
+          grid-template-areas:
+            "video video count count"
+            "video video facts facts"
+            "seasons seasons seasons seasons"
+            "quote quote join join"
+            "sponsors sponsors sponsors sponsors";
+        }
+        .tile.video { grid-area: video; }
+        .tile.count { grid-area: count; }
+        .tile.facts { grid-area: facts; }
+        .tile.seasons { grid-area: seasons; }
+        .tile.quote { grid-area: quote; }
+        .tile.join { grid-area: join; }
+        .tile.sponsors { grid-area: sponsors; }
+      }
+
+      .tile { margin: 0; background: var(--panel); border-radius: 0.375rem; padding: 1.25rem 1.5rem; }
+      .tile h2 { margin: 0 0 0.75rem; font-stretch: 75%; font-weight: 700; font-size: 1.35rem; line-height: 1.2; }
+      .tile p { margin: 0 0 0.5rem; max-width: 60ch; }
+
+      .tile.video { background: var(--blue-deep); color: var(--white); display: flex; flex-direction: column; }
+      .screen {
+        flex: 1;
+        min-height: 14rem;
+        display: grid;
+        place-items: center;
+        border: 2px dashed rgb(255 255 255 / 0.35);
+        border-radius: 0.25rem;
+        font-stretch: 75%;
+        font-weight: 600;
+        font-size: 1.25rem;
+        text-align: center;
+        padding: 1rem;
+      }
+      .video figcaption { margin-top: 0.75rem; font-size: 0.9rem; color: rgb(255 255 255 / 0.8); }
+
+      .tile.count { background: var(--signal); }
+      .count .days {
+        margin: 0 0 0.75rem;
+        font-stretch: 58%;
+        font-weight: 850;
+        font-size: clamp(3.5rem, 9vw, 5.5rem);
+        line-height: 0.9;
+      }
+
+      .facts dl { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 0; }
+      .facts dt { font-size: 0.85rem; color: var(--muted); }
+      .facts dd { margin: 0; font-stretch: 75%; font-weight: 700; font-size: 1.4rem; line-height: 1.15; }
+
+      .seasons ol {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+        gap: 0.75rem;
+      }
+      .seasons li { border-top: 4px solid var(--blue); padding-top: 0.6rem; }
+      .seasons .year { display: block; font-stretch: 58%; font-weight: 800; font-size: 2.25rem; line-height: 1; color: var(--blue); }
+      .seasons .game { display: block; font-weight: 600; }
+      .seasons .record { display: block; font-size: 0.9rem; color: var(--muted); }
+
+      .quote blockquote { margin: 0; }
+      .quote blockquote p { font-size: 1.2rem; line-height: 1.45; }
+      .quote footer { color: var(--muted); font-size: 0.9rem; }
+
+      .join .when { font-weight: 600; }
+
+      .sponsors ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+      .sponsors li { background: var(--white); padding: 0.4rem 0.8rem; border-radius: 999px; font-size: 0.95rem; }
+
+      footer.site { padding-block: 1.5rem 3rem; color: var(--muted); font-size: 0.9rem; }
+      footer.site a { color: var(--ink); }
+
+      a:focus-visible {
+        outline: 3px solid var(--blue);
+        outline-offset: 3px;
+      }
+      .tile.video a:focus-visible, .bumper a:focus-visible { outline-color: var(--signal); }
     </style>
   </head>
 
   <body>
-    <main>
-      <h1>Liberty Robotics <span class="team-number">1764</span></h1>
-      <p class="status">Design preview. Not the team's live website.</p>
+    <a class="skip" href="#main">Skip to content</a>
+    <p class="flag">Design preview. Placeholder content, unverified records, sampled colors.</p>
 
-      <p>
-        Four directions for a rebuilt Team 1764 site. All four show the same core
-        content, so the difference you are judging is layout, typography, and
-        tone rather than what the page says. Bumper also adds a kickoff
-        countdown and a video slot, because that direction depends on them.
-      </p>
+    <header>
+      <div class="wrap bar">
+        <a class="mark" href="#main"><span class="chip">1764</span> Liberty Robotics</a>
+        <nav aria-label="Main">
+          <a href="#seasons">Seasons</a>
+          <a href="#team">Team</a>
+          <a href="#sponsors">Sponsors</a>
+        </nav>
+        <a class="button" href="#join">Join</a>
+      </div>
+    </header>
 
-      <p>
-        Nothing here is final. The colors are sampled from a team photograph and
-        the records and quotes are placeholders.
-      </p>
+    <main id="main" class="wrap">
+      <div class="bumper">
+        <p class="number" aria-hidden="true">1764</p>
+        <div>
+          <h1>Liberty Robotics, FIRST Team 1764</h1>
+          <p class="pitch">Every winter we design, build, and code a competition robot from scratch. Come build the next one.</p>
+        </div>
+      </div>
 
-      <h2>The directions</h2>
-      <ol>
-        <li>
-          <a href="mockups/archive/">Archive</a>
-          <p>
-            Dark and dense. The season record is the main event, on the theory
-            that a team that documents itself well is the most convincing thing
-            a robotics team can show.
-          </p>
-        </li>
-        <li>
-          <a href="mockups/institutional/">Institutional</a>
-          <p>
-            Light and roomy, led by a photograph. Immediately legible to a
-            parent, a sponsor, or a principal.
-          </p>
-        </li>
-        <li>
-          <a href="mockups/editorial/">Editorial</a>
-          <p>
-            Type-led and asymmetric, built around student voices. The most
-            print-like of the four.
-          </p>
-        </li>
-        <li>
-          <a href="mockups/bumper/">Bumper</a>
-          <p>
-            Built for recruiting. The team number sits on a robot bumper, with
-            tiles for video, the next kickoff, and how to join. Aimed at the
-            student deciding whether to show up.
-          </p>
-        </li>
-      </ol>
+      <div class="bento">
+        <figure class="tile video">
+          <div class="screen">Robot video loop</div>
+          <figcaption>Slot for a 10 to 15 second muted clip from the 2026 season. Needs footage from the team.</figcaption>
+        </figure>
+
+        <section class="tile count" aria-labelledby="count-title">
+          <h2 id="count-title">Next season</h2>
+          <p class="days" data-countdown hidden></p>
+          <p>Kickoff for BIOCORE, the 2027 game, is Saturday, January 9 at 11:00 AM Central.</p>
+        </section>
+
+        <section class="tile facts" aria-labelledby="facts-title">
+          <h2 id="facts-title">The short version</h2>
+          <dl>
+            <div><dt>Rookie year</dt><dd>2006</dd></div>
+            <div><dt>Competes at</dt><dd>Regionals</dd></div>
+            <div><dt>Meets</dt><dd>Tue &amp; Thu</dd></div>
+          </dl>
+        </section>
+
+        <section class="tile seasons" id="seasons" aria-labelledby="seasons-title">
+          <h2 id="seasons-title">Recent seasons</h2>
+          <ol reversed>
+            <li><span class="year">2026</span><span class="game">REBUILT</span><span class="record">Record to come</span></li>
+            <li><span class="year">2025</span><span class="game">Reefscape</span><span class="record">Record to come</span></li>
+            <li><span class="year">2024</span><span class="game">Crescendo</span><span class="record">Record to come</span></li>
+            <li><span class="year">2023</span><span class="game">Charged Up</span><span class="record">Record to come</span></li>
+          </ol>
+        </section>
+
+        <section class="tile quote" id="team" aria-labelledby="quote-title">
+          <h2 id="quote-title">The robot builds me</h2>
+          <blockquote>
+            <p>Placeholder quote. A real student testimonial from the team goes here, in the student's own words.</p>
+            <footer>Student name, Class of 20XX</footer>
+          </blockquote>
+        </section>
+
+        <section class="tile join" id="join" aria-labelledby="join-title">
+          <h2 id="join-title">Join the team</h2>
+          <p>Meetings are open to students at every experience level. No robotics experience required. Bring a notebook.</p>
+          <p class="when">Tuesdays and Thursdays, 3:30 &ndash; 6:00 PM</p>
+          <p>Meeting room to be confirmed.</p>
+          <a class="button" href="#">Sign up to visit</a>
+        </section>
+
+        <section class="tile sponsors" id="sponsors" aria-labelledby="sponsors-title">
+          <h2 id="sponsors-title">Sponsors</h2>
+          <ul>
+            <li>Kissick Construction</li>
+            <li>Ford Motor Company</li>
+            <li>Ewing Marion Kauffman Foundation</li>
+            <li>KC STEM Alliance</li>
+            <li>Honeywell</li>
+            <li>Hallmark</li>
+            <li>Liberty Public Schools</li>
+          </ul>
+        </section>
+      </div>
     </main>
+
+    <footer class="site">
+      <div class="wrap">
+        Liberty Robotics, FIRST Robotics Competition Team 1764, Liberty, Missouri.
+        <a href="../../index.html">Back to all directions</a>
+      </div>
+    </footer>
+
+    <script>
+      const target = document.querySelector("[data-countdown]");
+      const kickoff = new Date("2027-01-09T12:00:00-05:00");
+      const days = Math.ceil((kickoff - Date.now()) / 86400000);
+
+      if (target && days > 0) {
+        target.textContent = days === 1 ? "1 day" : `${days} days`;
+        target.hidden = false;
+      }
+    </script>
   </body>
 </html>
